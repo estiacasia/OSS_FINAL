@@ -26,17 +26,17 @@ class Tetris(QMainWindow):  # QMainWindow 상속
         self.speed = 10 # 블럭 내려가는 속도 (낮을수록 빠름)
 
         self.timer = QBasicTimer() # 타이머 Qt에서 받아옴
-        self.setFocusPolicy(Qt.StrongFocus) # 위젯이 키보드입력/클릭 수락하게끔
+        self.setFocusPolicy(Qt.StrongFocus) # 위젯이 키보드입력/클릭 전달받게
 
-        hLayout = QHBoxLayout()
+        hLayout = QHBoxLayout() # 레이아웃 매니저
         self.tboard = Board(self, self.gridSize)
-        hLayout.addWidget(self.tboard)
+        hLayout.addWidget(self.tboard) #레이아웃에 보드 추가
 
         self.sidePanel = SidePanel(self, self.gridSize)
-        hLayout.addWidget(self.sidePanel)
+        hLayout.addWidget(self.sidePanel) #레이아웃에 사이드패널 추가
 
         self.statusbar = self.statusBar()
-        self.tboard.msg2Statusbar[str].connect(self.statusbar.showMessage)
+        self.tboard.msg2Statusbar[str].connect(self.statusbar.showMessage) #하단 스코어 표시 스테이터스바 추가
 
         self.start()
 
@@ -45,7 +45,7 @@ class Tetris(QMainWindow):  # QMainWindow 상속
         self.show()
 
         self.setFixedSize(self.tboard.width() + self.sidePanel.width(),
-                          self.sidePanel.height() + self.statusbar.height())
+                          self.sidePanel.height() + self.statusbar.height()) # 가로 세로 레이아웃에 맞게 설정
 
     def center(self):
         screen = QDesktopWidget().screenGeometry()
