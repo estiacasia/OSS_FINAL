@@ -13,7 +13,7 @@ class Shape(object):
     shapeS = 6
     shapeZ = 7
 
-    shapeCoord = (
+    shapeCoord = ( #좌표설정
         ((0, 0), (0, 0), (0, 0), (0, 0)),
         ((0, -1), (0, 0), (0, 1), (0, 2)),
         ((0, -1), (0, 0), (0, 1), (1, 1)),
@@ -24,11 +24,12 @@ class Shape(object):
         ((0, 0), (0, -1), (1, 0), (-1, -1))
     )
 
-    def __init__(self, shape=0):
+    def __init__(self, shape=0): #변수 초기화
         self.shape = shape
 
-    def getRotatedOffsets(self, direction):
+    def getRotatedOffsets(self, direction): #회전시키기
         tmpCoords = Shape.shapeCoord[self.shape]
+        #조건에 따라 coords 값 리턴
         if direction == 0 or self.shape == Shape.shapeO:
             return ((x, y) for x, y in tmpCoords)
 
