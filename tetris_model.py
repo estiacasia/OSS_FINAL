@@ -13,15 +13,15 @@ class Shape(object):
     shapeS = 6
     shapeZ = 7
 
-    shapeCoord = ( #좌표설정
+    shapeCoord = ( 
         ((0, 0), (0, 0), (0, 0), (0, 0)),
-        ((0, -1), (0, 0), (0, 1), (0, 2)),
-        ((0, -1), (0, 0), (0, 1), (1, 1)),
-        ((0, -1), (0, 0), (0, 1), (-1, 1)),
-        ((0, -1), (0, 0), (0, 1), (1, 0)),
-        ((0, 0), (0, -1), (1, 0), (1, -1)),
-        ((0, 0), (0, -1), (-1, 0), (1, -1)),
-        ((0, 0), (0, -1), (1, 0), (-1, -1))
+        ((0, -1), (0, 0), (0, 1), (0, 2)),  #일자 블록
+        ((0, -1), (0, 0), (0, 1), (1, 1)),  #L 모양 블록
+        ((0, -1), (0, 0), (0, 1), (-1, 1)), #L 모양 뒤입은 모양 블럭
+        ((0, -1), (0, 0), (0, 1), (1, 0)),  #T 모양 블럭
+        ((0, 0), (0, -1), (1, 0), (1, -1)), #네모 모양 블럭
+        ((0, 0), (0, -1), (-1, 0), (1, -1)),#S 모양 블럭
+        ((0, 0), (0, -1), (1, 0), (-1, -1)) #Z 모양 블럭
     )
 
     def __init__(self, shape=0): #변수 초기화
@@ -48,10 +48,10 @@ class Shape(object):
             else:
                 return ((y, -x) for x, y in tmpCoords)
 
-    def getCoords(self, direction, x, y):
+    def getCoords(self, direction, x, y): # 현재 블럭 위치 가져옴
         return ((x + xx, y + yy) for xx, yy in self.getRotatedOffsets(direction))
 
-    def getBoundingOffsets(self, direction):
+    def getBoundingOffsets(self, direction): #최대 최소 범위 설정
         tmpCoords = self.getRotatedOffsets(direction)
         minX, maxX, minY, maxY = 0, 0, 0, 0
         for x, y in tmpCoords:

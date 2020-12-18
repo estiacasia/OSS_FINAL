@@ -137,9 +137,9 @@ class Tetris(QMainWindow):  # QMainWindow 상속
         self.updateWindow()
 
 
-def drawSquare(painter, x, y, val, s): #블럭 색깔 
+def drawSquare(painter, x, y, val, s): 
     colorTable = [0x000000, 0xCC6666, 0x66CC66, 0x6666CC,
-                  0xCCCC66, 0xCC66CC, 0x66CCCC, 0xDAAA00]
+                  0xCCCC66, 0xCC66CC, 0x66CCCC, 0xDAAA00] #블럭 색깔 
 
     if val == 0:
         return
@@ -156,7 +156,7 @@ def drawSquare(painter, x, y, val, s): #블럭 색깔
     painter.drawLine(x + s - 1, y + s - 1, x + s - 1, y + 1)
 
 
-class SidePanel(QFrame):
+class SidePanel(QFrame): # 사이드패널 - Qframe 에서 상속받아옴
     def __init__(self, parent, gridSize):
         super().__init__(parent)
         self.setFixedSize(gridSize * 5, gridSize * BOARD_DATA.height)
@@ -178,7 +178,7 @@ class SidePanel(QFrame):
             drawSquare(painter, x * self.gridSize + dx, y * self.gridSize + dy, val, self.gridSize)
 
 
-class Board(QFrame):
+class Board(QFrame): # 테트리스 블럭쌓는 보드판
     msg2Statusbar = pyqtSignal(str)
     speed = 10
 
