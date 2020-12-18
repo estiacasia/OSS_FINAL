@@ -21,8 +21,8 @@ class Shape(object):
         ((0, -1), (0, 0), (0, 1), (-1, 1)), #L 모양 뒤입은 모양 블럭
         ((0, -1), (0, 0), (0, 1), (1, 0)),  #T 모양 블럭
         ((0, 0), (0, -1), (1, 0), (1, -1)), #네모 모양 블럭
-        ((0, 0), (0, -1), (-1, 0), (1, -1)),#S 모양 블럭
-        ((0, 0), (0, -1), (1, 0), (-1, -1)) #Z 모양 블럭
+        ((0, 0), (0, -1), (-1, 0), (1, -1)),#Z 모양 블럭
+        ((0, 0), (0, -1), (1, 0), (-1, -1)) #S 모양 블럭
     )
 
     def __init__(self, shape=0): #초기화
@@ -89,7 +89,7 @@ class BoardData(object): #보드 정보
     def getValue(self, x, y):
         return self.backBoard[x + y * BoardData.width]
 
-    def getCurrentShapeCoord(self):
+    def getCurrentShapeCoord(self): #현재블럭좌표
         return self.currentShape.getCoords(self.currentDirection, self.currentX, self.currentY)
 
     def createNewPiece(self):   #새로운 조각 만들기
@@ -126,7 +126,7 @@ class BoardData(object): #보드 정보
                 return False #불가능합니다.
         return True #가능!
 
- #블록 움직임 제어
+ #블록 조정, 자연낙하, 파괴 함수들
     def moveDown(self):
         lines = 0
         if self.tryMoveCurrent(self.currentDirection, self.currentX, self.currentY + 1):
