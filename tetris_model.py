@@ -25,12 +25,12 @@ class Shape(object):
         ((0, 0), (0, -1), (1, 0), (-1, -1)) #Z 모양 블럭
     )
 
-    def __init__(self, shape=0): #변수 초기화
+    def __init__(self, shape=0): #초기화
         self.shape = shape
 
     def getRotatedOffsets(self, direction): #회전시키기
         tmpCoords = Shape.shapeCoord[self.shape]
-        #조건에 따라 coords 값 리턴
+        #조건에 따라 coords 값 변환하여 리턴
         if direction == 0 or self.shape == Shape.shapeO:
             return ((x, y) for x, y in tmpCoords)
 
@@ -92,15 +92,12 @@ class BoardData(object): #보드 정보
     def getCurrentShapeCoord(self):
         return self.currentShape.getCoords(self.currentDirection, self.currentX, self.currentY)
 
-    def createNewPiece(self):
-        #새로운모양만들기
+    def createNewPiece(self):   #새로운 조각 만들기
         minX, maxX, minY, maxY = self.nextShape.getBoundingOffsets(0)
         result = False
-        #기본 출력값은 False
         
-   #tryMoveCurrent 의 출력값은 boolean값임.
-        if self.tryMoveCurrent(0, 5, -minY):
-        #참인경우. 즉,  tryMoveCurrent -> tryMove함수 출력시 결과값 True
+        #tryMoveCurrent 의 출력값은 boolean값임.
+        if self.tryMoveCurrent(0, 5, -minY): #참인경우. 즉,  tryMoveCurrent -> tryMove함수 출력시 결과값 True
             self.currentX = 5
             self.currentY = -minY
             self.currentDirection = 0
