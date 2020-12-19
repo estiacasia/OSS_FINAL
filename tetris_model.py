@@ -127,7 +127,7 @@ class BoardData(object): #보드 정보
         return True #가능!
 
  #블록 조정, 자연낙하, 파괴 함수들
-    def moveDown(self):
+    def moveDown(self): #아래로 움직이기
         lines = 0
         if self.tryMoveCurrent(self.currentDirection, self.currentX, self.currentY + 1):
             self.currentY += 1
@@ -137,7 +137,7 @@ class BoardData(object): #보드 정보
             self.createNewPiece()
         return lines
 
-    def dropDown(self):
+    def dropDown(self): #자연낙하
         while self.tryMoveCurrent(self.currentDirection, self.currentX, self.currentY + 1):
             self.currentY += 1
         self.mergePiece()
@@ -145,20 +145,20 @@ class BoardData(object): #보드 정보
         self.createNewPiece()
         return lines
 
-    def moveLeft(self):
+    def moveLeft(self): #왼쪽으로 움직이기
         if self.tryMoveCurrent(self.currentDirection, self.currentX - 1, self.currentY):
             self.currentX -= 1
 
-    def moveRight(self):
+    def moveRight(self): #오른쪽으로 움직이기
         if self.tryMoveCurrent(self.currentDirection, self.currentX + 1, self.currentY):
             self.currentX += 1
 
-    def rotateRight(self):
+    def rotateRight(self):  #오른쪽으로 회전
         if self.tryMoveCurrent((self.currentDirection + 1) % 4, self.currentX, self.currentY):
             self.currentDirection += 1
             self.currentDirection %= 4
 
-    def rotateLeft(self):
+    def rotateLeft(self): #왼쪽으로 회전
         if self.tryMoveCurrent((self.currentDirection - 1) % 4, self.currentX, self.currentY):
             self.currentDirection -= 1
             self.currentDirection %= 4
